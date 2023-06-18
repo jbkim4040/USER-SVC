@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "tb_user_m")
 @Getter
 @Builder
 @AllArgsConstructor
@@ -14,35 +15,28 @@ import lombok.*;
 public class UserEntity {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private String id;
 
-    @Nonnull
-    @Column(name = "user_passwork")
+    @Column(name = "user_passwork", nullable = false)
     private String password;
 
-    @Nonnull
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false)
     private String name;
 
-    @Nonnull
-    @Column(name = "user_rank")
+    @Column(name = "user_rank", nullable = false)
     private String rank;
 
-    @OneToOne
-    @Column(name = "user_part")
-    private PartEntity part;
+    @Column(name = "user_part", nullable = false)
+    private String partId;
 
-    @Nonnull
-    @Column(name = "user_phone")
+    @Column(name = "user_phone", nullable = false)
     private String phone;
 
-    @Nonnull
-    @Column(name = "user_email")
+    @Column(name = "user_email", nullable = false)
     private String email;
 
-    @Nonnull
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_authority")
+    @Column(name = "user_authority", nullable = false)
     private Authority authority;
 }

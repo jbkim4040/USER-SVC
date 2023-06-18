@@ -1,5 +1,8 @@
 package com.abacus.usersvc.config;
 
+import com.abacus.usersvc.jwt.JwtAccessDeniedHandler;
+import com.abacus.usersvc.jwt.JwtAuthenticationEntryPoint;
+import com.abacus.usersvc.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +10,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,30 +21,34 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final TokenProvider tokenProvider;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("예외처리하고싶은 url 1", "예외처리하고싶은 url 2");
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-//    protected SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception{
-//        http
-//                .authorizeHttpRequests()
-//                .requestMatchers("허용해주고싶은 url 1").permitAll()
-//                .anyRequest().authenticated()
-//
-//            .and()
-//                .formLogin()
-//                .loginProcessingUrl("로그인 처리될 url")
-//                .permitAll()
-//                .successHandler()
-//                .failureHandler();
-//
-//
-//        http
-//                .sessionManagement()
-//                .invalidSessionUrl()
-//;
-//
-//
-//    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .accessDeniedHandler(jwtAccessDeniedHandler)
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated()
+
+                .and()
+                .apply(new JwtSecurityConfig(tokenProvider));
+
+        return http.build();
+    }
 }
