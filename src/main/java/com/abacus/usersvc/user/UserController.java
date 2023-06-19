@@ -1,8 +1,10 @@
 package com.abacus.usersvc.user;
 
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = {"User"})
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor

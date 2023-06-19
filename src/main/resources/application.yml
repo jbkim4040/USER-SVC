@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   datasource:
     url: "jdbc:mysql://localhost:3306/user_dev"
     username: "root"
@@ -16,7 +18,7 @@ spring:
 # 로그 레벨 설정
 logging:
   level:
-    com.tutorial: debug
+    com.tutorial: info
 
 
 # JWT 설정

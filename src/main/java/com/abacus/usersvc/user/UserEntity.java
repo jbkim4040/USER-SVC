@@ -1,7 +1,5 @@
 package com.abacus.usersvc.user;
 
-import com.abacus.usersvc.part.PartEntity;
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.*;
 
