@@ -20,13 +20,10 @@ repositories {
 }
 
 dependencies {
-    implementation files('C:/Users/jbkim/IdeaProjects/local-repository/COMMON-0.0.1-SNAPSHOT.jar')
+    implementation files('C:/Users/jbkim/IdeaProjects/local-repository/com.abacus.common-0.0.1-SNAPSHOT.jar')
+//    implementation files('libs/COMMON-0.0.1-SNAPSHOT.jar')
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-
-
-    if (project.hasProperty('local')) {
-    }
 
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

@@ -1,10 +1,14 @@
 package com.abacus.usersvc.part;
 
+import com.abacus.common.audit.Audit;
+import com.abacus.usersvc.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_part_m")
@@ -12,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PartEntity {
+public class PartEntity extends Audit {
     @Id
     @Column(name = "part_id", nullable = false)
     private String id;

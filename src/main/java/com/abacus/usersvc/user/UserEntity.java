@@ -1,7 +1,10 @@
 package com.abacus.usersvc.user;
 
+import com.abacus.common.audit.Audit;
+import com.abacus.usersvc.part.PartEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
 
 @Entity
 @Table(name = "tb_user_m")
@@ -10,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserEntity {
+public class UserEntity extends Audit {
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -25,9 +28,6 @@ public class UserEntity {
     @Column(name = "user_rank", nullable = false)
     private String rank;
 
-    @Column(name = "user_part", nullable = false)
-    private String partId;
-
     @Column(name = "user_phone", nullable = false)
     private String phone;
 
@@ -37,4 +37,7 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "user_authority", nullable = false)
     private Authority authority;
+
+    @OneToMany(mappedBy = "")
+    private PartEntity partEntity;
 }
