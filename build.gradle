@@ -16,12 +16,14 @@ configurations {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    maven {
+        url "http://3.35.231.30:8081/repository/maven-snapshots/"
+        allowInsecureProtocol true
+    }
 }
 
 dependencies {
-    implementation files('C:/Users/jbkim/IdeaProjects/local-repository/com.abacus.common-0.0.1-SNAPSHOT.jar')
-//    implementation files('libs/COMMON-0.0.1-SNAPSHOT.jar')
+    implementation 'com.abacus:COMMON:0.0.1-SNAPSHOT'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 

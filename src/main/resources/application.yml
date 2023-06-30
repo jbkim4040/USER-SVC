@@ -2,10 +2,10 @@ spring:
   profiles:
     active: local
   datasource:
-    url: "jdbc:mysql://localhost:3306/user_dev"
-    username: "root"
-    password: "@doqjzjtm!=="
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db.workm.kr:3306/dbworkm2023?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: workm2023
+    password: workm!2023
   jpa:
     hibernate:
       ddl-auto: create-drop
