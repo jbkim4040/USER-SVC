@@ -18,16 +18,22 @@ repositories {
     mavenCentral()
     maven {
         url "http://3.35.231.30:8081/repository/maven-snapshots/"
-        allowInsecureProtocol true
+        credentials {
+            username project.nexusUsername
+            password project.nexusPassword
+            allowInsecureProtocol = true
+        }
     }
 }
 
+
 dependencies {
-    implementation 'com.abacus:COMMON:0.0.1-SNAPSHOT'
+    implementation 'com.abacus:common:0.0.1-SNAPSHOT'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-security'

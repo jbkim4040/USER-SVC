@@ -14,7 +14,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public void login() {
+    public void login(@RequestBody UserEntity userEntity) {
 
     }
 

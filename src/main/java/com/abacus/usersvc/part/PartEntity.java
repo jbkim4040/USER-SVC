@@ -1,6 +1,5 @@
 package com.abacus.usersvc.part;
 
-import com.abacus.common.audit.Audit;
 import com.abacus.usersvc.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

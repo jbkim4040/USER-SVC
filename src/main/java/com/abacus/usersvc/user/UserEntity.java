@@ -37,7 +37,4 @@ public class UserEntity extends Audit {
     @Enumerated(EnumType.STRING)
     @Column(name = "user_authority", nullable = false)
     private Authority authority;
-
-    @OneToMany(mappedBy = "")
-    private PartEntity partEntity;
 }
